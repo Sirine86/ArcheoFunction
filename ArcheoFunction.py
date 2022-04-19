@@ -6,6 +6,11 @@ print(sys.version) ## define system version of python
 
 # generate matplotlib handles to create a legend of the features we put in our map.
 def generate_handles(labels, colors, edge='k', alpha=1):
+    '''
+    generate handles labels for map
+    param labels, colors, edge, alpha
+    return handles label for map
+    '''
     lc = len(colors)  # get the length of the color list
     handles = []
     for i in range(len(labels)):
@@ -13,6 +18,11 @@ def generate_handles(labels, colors, edge='k', alpha=1):
     return handles
 
 def scale_bar(ax, location=(0.92, 0.95)):
+    '''
+    scale-bar for map
+    param ax, location
+    return map 
+    '''
     llx0, llx1, lly0, lly1 = ax.get_extent(ccrs.PlateCarree())
     sbllx = (llx1 + llx0) / 2
     sblly = lly0 + (lly1 - lly0) * location[1]
