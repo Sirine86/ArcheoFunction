@@ -1,8 +1,10 @@
 import geopandas as gpd
 import matplotlib.lines as mlines
 import cartopy.crs as ccrs
+import matplotlib.patches as mpatches
 import sys
 print(sys.version) ## define system version of python
+plt.ion() # make the plotting interactive
 
 # generate matplotlib handles to create a legend of the features we put in our map.
 def generate_handles(labels, colors, edge='k', alpha=1):
@@ -40,4 +42,7 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx-12500, sby-4500, '10 km', transform=tmc, fontsize=8)
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
 
-def ArcheoFunction ():
+def archeofunction ():
+    outline = gpd.read_file('')
+    myFig = plt.figure(figsize=(10, 10))
+    myCRS = ccrs.UTM()
