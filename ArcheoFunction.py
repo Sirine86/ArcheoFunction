@@ -8,7 +8,7 @@ print(sys.version) ## define system version of python
 def generate_handles(labels, colors, edge='k', alpha=1):
     '''
     generate handles labels for map
-    param labels, colors, edge, alpha
+    :param labels, colors, edge, alpha
     return handles label for map
     '''
     lc = len(colors)  # get the length of the color list
@@ -20,8 +20,8 @@ def generate_handles(labels, colors, edge='k', alpha=1):
 def scale_bar(ax, location=(0.92, 0.95)):
     '''
     scale-bar for map
-    param ax, location
-    return map 
+    :param ax, location
+    return map
     '''
     llx0, llx1, lly0, lly1 = ax.get_extent(ccrs.PlateCarree())
     sbllx = (llx1 + llx0) / 2
@@ -39,3 +39,5 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx, sby-4500, '20 km', transform=tmc, fontsize=8)
     plt.text(sbx-12500, sby-4500, '10 km', transform=tmc, fontsize=8)
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
+
+def ArcheoFunction ():
