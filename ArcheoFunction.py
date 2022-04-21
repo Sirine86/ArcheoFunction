@@ -2,6 +2,7 @@ import geopandas as gpd
 import matplotlib.lines as mlines
 import cartopy.crs as ccrs
 import matplotlib.patches as mpatches
+from shapely.geometry import Point
 import sys
 print(sys.version) ## define system version of python
 plt.ion() # make the plotting interactive
@@ -43,6 +44,7 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
 
 def archeofunction ():
-    outline = gpd.read_file('')
+    outline = gpd.read_file('C://My DaTa//outline_leb')
+    governorate = gpd.read_file('C://My DaTa//Governorate_leb')
     myFig = plt.figure(figsize=(10, 10))
-    myCRS = ccrs.UTM()
+    myCRS = ccrs.UTM(22770)
