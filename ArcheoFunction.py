@@ -44,7 +44,7 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
 
 def archeofunction ():
-    outline = gpd.read_file('C://My DaTa//outline_leb')
-    governorate = gpd.read_file('C://My DaTa//Governorate_leb')
+    outline = gpd.read_file('C://My DaTa//outline_leb//LBN_adm0.shp')
+    governorate = gpd.read_file('C://My DaTa//Governorate_leb//LBN_adm1.shp')
     myFig = plt.figure(figsize=(10, 10))
     myCRS = ccrs.UTM(22770)
