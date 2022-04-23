@@ -1,10 +1,13 @@
+
 import geopandas as gpd
+import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import cartopy.crs as ccrs
 import matplotlib.patches as mpatches
 from shapely.geometry import Point
 import sys
 print(sys.version) ## define system version of python
+
 plt.ion() # make the plotting interactive
 
 # generate matplotlib handles to create a legend of the features we put in our map.
