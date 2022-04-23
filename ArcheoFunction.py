@@ -56,5 +56,5 @@ def archeofunction (condition):
     outline_itm = outline.to_crs(epsg=22770)
     governorate_itm = governorate.to_crs(epsg=22770)
 
-    
+
     myFig = plt.figure(figsize=(10, 10))
