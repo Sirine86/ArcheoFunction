@@ -53,6 +53,5 @@ def archeofunction(condition):
     print(data.head())
     outline_itm = outline.to_crs(epsg=22770)
     governorate_itm = governorate.to_crs(epsg=22770)
-    myFig = plt.figure(figsize=(10, 10))  #create a figure of size 10x10 (representing the page size in inches)
     ax = plt.axes(projection=ccrs.Mercator())  #create an axes object in the figure, using a Mercator
-
+    myFig = plt.figure(figsize=(10, 10))  #create a figure of size 10x10 (representing the page size in inches)
