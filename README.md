@@ -34,3 +34,7 @@ each function and command do with identifying each parameter.
 **Function:** it is written by Phyton language with the use of conda package as cartopy,
 matplotlib and geopandas for making maps. Vector layers are defined and import from branch Map of repository,
 and site location is defined by the coordinate system. 
+
+**Branches:** there are three branches created on GitHub desktop for the Archeo Function repository. 
+Those branches (DataBase_1, Sites_location and Vector_data) contain data used in the script, where it’s necessary 
+to merge them into the main branch where you are able to use and edit them. 
