@@ -16,4 +16,9 @@ print(Theater)
 print(Historical_church)
 print(Roman_temple)
 
+## adding buffer zone for sites
 Anfeh_buffer = Anfeh.buffer(570)
+Tell_arqa_buffer = Tell_arqa.buffer(344)
+Roman_temple_buffer = Roman_temple.buffer(685)
+Theater_buffer = Theater.buffer(97)
+Historical_church_buffer = Historical_church.buffer(1624)
