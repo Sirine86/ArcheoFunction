@@ -50,6 +50,8 @@ def archeofunction():
     #load data
     governorate = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm1.shp')
     data = gpd.read_file('C://Assig-egm722//ArcheoFunction//DataBase_1//Data')
+    df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx')
+    df.head()
     myCRS = ccrs.UTM(22770) #create a Universal Transverse Mercator reference system to transform our data.
     print(outline.head())
     print(governorate.head())
