@@ -52,6 +52,8 @@ def archeofunction():
     data = gpd.read_file('C://Assig-egm722//ArcheoFunction//DataBase_1//Data')
     df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx') #converting an excel sheet into shapefile
     df.head()
+    print(df)
+    df.to_file("Data.shp") #export file as shapefile to load into ArchGIS
     myCRS = ccrs.UTM(22770) #create a Universal Transverse Mercator reference system to transform our data.
     print(outline.head())
     print(governorate.head())
