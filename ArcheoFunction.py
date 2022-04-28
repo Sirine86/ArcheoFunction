@@ -57,7 +57,7 @@ def scale_bar(ax, location=(0.92, 0.95)):
     print(data.head())
 
     #create a Universal Transverse Mercator reference system to transform our data
-    myCRS = crs.UTM(22770)
+    myCRS = crs.UTM(37)
     outline_itm = outline.to_crs(epsg=22770)
     governorate_itm = governorate.to_crs(epsg=22770)
     ax = plt.axes(projection=ccrs.Mercator())  #create an axes object in the figure, using a Mercator
