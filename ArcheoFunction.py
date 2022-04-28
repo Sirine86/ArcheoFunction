@@ -1,34 +1,27 @@
 
 import geopandas as gpd
+import pandas as pd
+from shapely.geometry import Point
 import matplotlib.pyplot as plt
-import matplotlib.lines as mlines
+from cartopy.feature import ShapelyFeature
 import cartopy.crs as ccrs
 import matplotlib.patches as mpatches
-from shapely.geometry import Point
-import sys
-print(sys.version) ## define system version of python
+import matplotlib.lines as mlines
 
 plt.ion() # make the plotting interactive
 
 # generate matplotlib handles to create a legend of the features we put in our map.
 def generate_handles(labels, colors, edge='k', alpha=1):
-    """
-    generate handles labels for map
-    :param labels, colors, edge, alpha
-    return handles label for map
-    """
     lc = len(colors)  # get the length of the color list
     handles = []
     for i in range(len(labels)):
         handles.append(mpatches.Rectangle((0, 0), 1, 1, facecolor=colors[i % lc], edgecolor=edge, alpha=alpha))
     return handles
 
+# create a scale bar of length 20 km in the upper right corner of the map
+# adapted this question: https://stackoverflow.com/q/32333870
+# answered by SO user Siyh: https://stackoverflow.com/a/35705477
 def scale_bar(ax, location=(0.92, 0.95)):
-    """
-    scale-bar for map
-    :param ax, location
-    return map
-    """
     llx0, llx1, lly0, lly1 = ax.get_extent(ccrs.PlateCarree())
     sbllx = (llx1 + llx0) / 2
     sblly = lly0 + (lly1 - lly0) * location[1]
@@ -45,13 +38,14 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx, sby-4500, '20 km', transform=tmc, fontsize=8)
     plt.text(sbx-12500, sby-4500, '10 km', transform=tmc, fontsize=8)
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
-
+def archeofunction():
+# load the outline of Northern Ireland for a backdrop
+outline = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm0.shp')
+governorate = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm1.shp')
     #loading data
-    outline = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm0.shp')
-    governorate = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm1.shp')
-    data = gpd.read_file('C://Assig-egm722//ArcheoFunction//DataBase_1//Data')
-    df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=2, skiprows=2) #converting an excel sheet into shapefile
-    df.head()
+df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,
+                   skiprows=1)  # converting an excel sheet into shapefile
+df.head()
     print(outline.head())
     print(governorate.head())
     print(data.head())
