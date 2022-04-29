@@ -38,26 +38,36 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx, sby-4500, '20 km', transform=tmc, fontsize=8)
     plt.text(sbx-12500, sby-4500, '10 km', transform=tmc, fontsize=8)
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
-def archeofunction():
-# load the outline of Northern Ireland for a backdrop
+
+# load the outline of Lebanon and its governorate
     outline = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm0.shp')
     governorate = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm1.shp')
-    #loading data
-df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,
-                   skiprows=1)  # converting an excel sheet into shapefile
-df.head()
-print(outline.head())
-print(governorate.head())
-print(data.head())
+    print(outline.head())
+    print(governorate.head())
+    print(data.head())
+    myFig = plt.figure(figsize=(10, 10))  # create a figure of size 10x10 (representing the page size in inches)
+    myCRS = ccrs.UTM(37)  # create a Universal Transverse Mercator reference system to transform our data.
+    # be sure to fill in XX above with the correct number for the area we're working in.
+    ax = plt.axes(projection=ccrs.Mercator())  # finally, create an axes object in the figure, using a Mercator
 
-    #create a Universal Transverse Mercator reference system to transform our data
-myCRS = crs.UTM(37)
-outline_itm = outline.to_crs(epsg=22770)
-governorate_itm = governorate.to_crs(epsg=22770)
-ax = plt.axes(projection=ccrs.Mercator())  #create an axes object in the figure, using a Mercator
-myFig = plt.figure(figsize=(10, 10))  #create a figure of size 10x10 (representing the page size in inches)
+    # first, we just add the outline and governorate of Lebanon using cartopy's ShapelyFeature
+    outline_feature = ShapelyFeature(outline['geometry'], myCRS, edgecolor='k', facecolor='w')
+    xmin, ymin, xmax, ymax = outline.total_bounds
 
-    #insert sites
+    governorate_feature = ShapelyFeature(governorate['geometry'], myCRS, edgecolor='k', facecolor='w')
+    xmin, ymin, xmax, ymax = governorate.total_bounds
+    ax.add_feature(outline_feature)  # add the features we've created to the map.
+    ax.add_feature(governorate_feature)
+
+    # using the boundary of the shapefile features, zoom the map to our area of interest
+    ax.set_extent([xmin, xmax, ymin, ymax], crs=myCRS)  # because total_bounds gives output as xmin, ymin, xmax, ymax,
+    # but set_extent takes xmin, xmax, ymin, ymax, we re-order the coordinates here.
+
+    myFig  # re-display the figure here.
+
+    outline_itm = outline.to_crs(epsg=22770)
+    governorate_itm = governorate.to_crs(epsg=22770)
+#insert sites
 Anfeh = Point(750794.00, 3805582.00)
 Tell_arqa = Point(228936.00, 3824965.00)
 Roman_temple = Point(229660.32, 3810573.97)
@@ -69,7 +79,7 @@ print(Theater)
 print(Historical_church)
 print(Roman_temple)
 
-    # adding buffer zone for sites
+# adding buffer zone for sites
 Anfeh_buffer = Anfeh.buffer(570)
 Tell_arqa_buffer = Tell_arqa.buffer(344)
 Roman_temple_buffer = Roman_temple.buffer(685)
@@ -81,5 +91,12 @@ print(type(Tell_arqa_buffer))
 print(type(Roman_temple_buffer))
 print(type(Theater_buffer))
 print(type(Historical_church_buffer))
+
+  #loading database
+df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,
+                   skiprows=1)  # converting an excel sheet into shapefile
+df.head()
+
+
     
 
