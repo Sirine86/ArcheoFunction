@@ -8,16 +8,17 @@ import cartopy.crs as ccrs
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 
-plt.ion() # make the plotting interactive
 
+plt.ion()  # make the plotting interactive
 # generate matplotlib handles to create a legend of the features we put in our map.
+
+
 def generate_handles(labels, colors, edge='k', alpha=1):
     lc = len(colors)  # get the length of the color list
     handles = []
     for i in range(len(labels)):
         handles.append(mpatches.Rectangle((0, 0), 1, 1, facecolor=colors[i % lc], edgecolor=edge, alpha=alpha))
     return handles
-
 # create a scale bar of length 20 km in the upper right corner of the map
 # adapted this question: https://stackoverflow.com/q/32333870
 # answered by SO user Siyh: https://stackoverflow.com/a/35705477
@@ -53,18 +54,12 @@ def scale_bar(ax, location=(0.92, 0.95)):
     # first, we just add the outline and governorate of Lebanon using cartopy's ShapelyFeature
     outline_feature = ShapelyFeature(outline['geometry'], myCRS, edgecolor='k', facecolor='w')
     xmin, ymin, xmax, ymax = outline.total_bounds
-
     governorate_feature = ShapelyFeature(governorate['geometry'], myCRS, edgecolor='k', facecolor='w')
     xmin, ymin, xmax, ymax = governorate.total_bounds
     ax.add_feature(outline_feature)  # add the features we've created to the map.
     ax.add_feature(governorate_feature)
-
     # using the boundary of the shapefile features, zoom the map to our area of interest
     ax.set_extent([xmin, xmax, ymin, ymax], crs=myCRS)  # because total_bounds gives output as xmin, ymin, xmax, ymax,
-    # but set_extent takes xmin, xmax, ymin, ymax, we re-order the coordinates here.
-
-    myFig  # re-display the figure here.
-
     outline_itm = outline.to_crs(epsg=22770)
     governorate_itm = governorate.to_crs(epsg=22770)
 #insert sites
@@ -92,11 +87,6 @@ print(type(Roman_temple_buffer))
 print(type(Theater_buffer))
 print(type(Historical_church_buffer))
 
-  #loading database
-df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,
-                   skiprows=1)  # converting an excel sheet into shapefile
+#loading database
+df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,skiprows=1)  # converting an excel sheet into shapefile
 df.head()
-
-
-    
-
