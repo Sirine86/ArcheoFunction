@@ -88,5 +88,6 @@ print(type(Theater_buffer))
 print(type(Historical_church_buffer))
 
 #loading database
-df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,skiprows=1)  # converting an excel sheet into shapefile
+df = pd.read_excel('C://Assig-egm722//ArcheoFunction//DataBase_1//Data.xlsx', header=1,skiprows=1)
+# converting an excel sheet into shapefile
 df.head()
