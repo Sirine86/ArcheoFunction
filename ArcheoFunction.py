@@ -14,11 +14,11 @@ plt.ion()  # make the plotting interactive
 
 
 def generate_handles(labels, colors, edge='k', alpha=1):
-    '''
+    """
 
     adding labels
     :param labels, colors, edge, alpha
-    '''
+    """
     lc = len(colors)  # get the length of the color list
     handles = []
     for i in range(len(labels)):
@@ -28,11 +28,12 @@ def generate_handles(labels, colors, edge='k', alpha=1):
 # adapted this question: https://stackoverflow.com/q/32333870
 # answered by SO user Siyh: https://stackoverflow.com/a/35705477
 def scale_bar(ax, location=(0.92, 0.95)):
-    '''
+    """
 
     define a scale to plot
     :param ax, location
-    '''
+
+    """
     llx0, llx1, lly0, lly1 = ax.get_extent(ccrs.PlateCarree())
     sbllx = (llx1 + llx0) / 2
     sblly = lly0 + (lly1 - lly0) * location[1]
@@ -70,8 +71,29 @@ def scale_bar(ax, location=(0.92, 0.95)):
     ax.add_feature(governorate_feature)
     # using the boundary of the shapefile features, zoom the map to our area of interest
     ax.set_extent([xmin, xmax, ymin, ymax], crs=myCRS)  # because total_bounds gives output as xmin, ymin, xmax, ymax,
+    site = gpd.read_file('C://Assig-egm722//ArcheoFunction//Sites_Location//Sites_1.shp')
+    print(site.head())
+    site_itm = site.to_crs(epsg=22770)
+    print(site_itm.head())
+    site_feature = ShapelyFeature(site['geometry'], myCRS, edgecolor='k', facecolor='w')
+    xmin, ymin, xmax, ymax = site.total_bounds
+    # add the features we've created to the map.
+    ax.add_feature(site_feature)
+    site_handle = ax.plot(site.geometry.x, site.geometry.y, 's', color='0.5', ms=6, transform=myCRS)
+
+    nice_names = [name.title() for name in site]
+    handles = site_handles
+    labels = nice_names + ['site']
+    leg = ax.legend(handles, labels, title='Legend', title_fontsize=14,
+                    fontsize=12, loc='upper left', frameon=True, framealpha=1)
+
+    for i, row in site.iterrows():
+        x, y = row.geometry.x, row.geometry.y  # get the x,y location for each town
+        plt.text(x, y, row['NAME'].title(), fontsize=8, transform=myCRS)  # use plt.text to place a label at x,y
+    myFig.savefig('map.png', bbox_inches='tight', dpi=300)
     outline_itm = outline.to_crs(epsg=22770)
     governorate_itm = governorate.to_crs(epsg=22770)
+
 #insert sites
 Anfeh = Point(750794.00, 3805582.00)
 Tell_arqa = Point(228936.00, 3824965.00)
