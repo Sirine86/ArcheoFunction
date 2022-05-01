@@ -50,7 +50,6 @@ def scale_bar(ax, location=(0.92, 0.95)):
     plt.text(sbx, sby-4500, '20 km', transform=tmc, fontsize=8)
     plt.text(sbx-12500, sby-4500, '10 km', transform=tmc, fontsize=8)
     plt.text(sbx-24500, sby-4500, '0 km', transform=tmc, fontsize=8)
-
 # load the outline of Lebanon and its governorate
     outline = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm0.shp')
     governorate = gpd.read_file('C://Assig-egm722//ArcheoFunction//Vector_data//LBN_adm1.shp')
