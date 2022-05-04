@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+Sites_Location/KMLToLayer_Sites_1.gdb/a00000009.gdbtable
+Sites_Location/KMLToLayer_Sites_1.gdb/a00000009.gdbtablx
