@@ -7,6 +7,8 @@ from cartopy.feature import ShapelyFeature
 import cartopy.crs as ccrs
 import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
+import rasterio as rio
+import numpy as np 
 
 
 plt.ion()  # make the plotting interactive
