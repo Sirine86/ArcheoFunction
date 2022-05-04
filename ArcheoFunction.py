@@ -64,7 +64,7 @@ def scale_bar(ax, location=(0.92, 0.95)):
     myCRS = ccrs.UTM(37)  # create a Universal Transverse Mercator reference system to transform our data.
     # be sure to fill in XX above with the correct number for the area we're working in.
     ax = plt.axes(projection=ccrs.Mercator())  # finally, create an axes object in the figure, using a Mercator
-
+    fig, ax = plt.subplots(1, 1, figsize=(10, 10), subplot_kw=dict(projection=myCRS)) # create a matplotlib axes object
     # first, we just add the outline and governorate of Lebanon using cartopy's ShapelyFeature
     outline_feature = ShapelyFeature(outline['geometry'], myCRS, edgecolor='k', facecolor='w')
     xmin, ymin, xmax, ymax = outline.total_bounds
