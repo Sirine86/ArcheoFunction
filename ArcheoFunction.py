@@ -10,7 +10,7 @@ import matplotlib.lines as mlines
 import rasterio as rio
 import numpy as np 
 
-
+def archeofunction(): 
 plt.ion()  # make the plotting interactive
 # generate matplotlib handles to create a legend of the features we put in our map.
 
