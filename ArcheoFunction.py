@@ -58,7 +58,9 @@ def scale_bar(ax, location=(0.92, 0.95)):
     print(outline.head())
     print(governorate.head())
     print(data.head())
-    dataset = rio.open('C://Assig-egm722//ArcheoFunction//Vector_data//LC08_L1TP_174036_20211030_20211109_01_T1.tif')
+    dataset = rio.open('dataset = rio.open('C://Assig-egm722//ArcheoFunction//Vector_data//
+                                                LC08_L1TP_174036_20211030_20211109_01_T1//
+                                                LC08_L1TP_174036_20211030_20211109_01_T1.tif')
     print('{} opened in {} mode'.format(dataset.name, dataset.mode))
     myFig = plt.figure(figsize=(10, 10))  # create a figure of size 10x10 (representing the page size in inches)
     myCRS = ccrs.UTM(37)  # create a Universal Transverse Mercator reference system to transform our data.
