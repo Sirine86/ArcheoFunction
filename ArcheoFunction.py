@@ -10,7 +10,7 @@ import matplotlib.lines as mlines
 import rasterio as rio
 import numpy as np 
 
-def archeofunction(): 
+def archeofunction():
 plt.ion()  # make the plotting interactive
 # generate matplotlib handles to create a legend of the features we put in our map.
 
@@ -58,6 +58,8 @@ def scale_bar(ax, location=(0.92, 0.95)):
     print(outline.head())
     print(governorate.head())
     print(data.head())
+    dataset = rio.open('C://Assig-egm722//ArcheoFunction//Vector_data//LC08_L1TP_174036_20211030_20211109_01_T1.tif')
+    print('{} opened in {} mode'.format(dataset.name, dataset.mode))
     myFig = plt.figure(figsize=(10, 10))  # create a figure of size 10x10 (representing the page size in inches)
     myCRS = ccrs.UTM(37)  # create a Universal Transverse Mercator reference system to transform our data.
     # be sure to fill in XX above with the correct number for the area we're working in.
